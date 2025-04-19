@@ -6,9 +6,10 @@ const port = 3000;
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 let posts = [
-    { id: 1 , title: "Example Post", content: "Example Content"}
+    { id: 0 , title: "Example Post", content: "Example Content"}
 ]
 
 
@@ -36,6 +37,22 @@ app.post("/delete", (req,res) =>{
         posts : posts
     });
 })
+
+app.post('/update', (req, res) => {
+    const { id, title, content } = req.body;
+
+    const itemIndex = posts.findIndex(item => item.id === Number(id));
+
+    if (itemIndex !== -1) {
+        posts[itemIndex].content = content;
+        console.log('Updated Array:', posts);
+
+        res.json(posts);
+    } else {
+        res.status(404).json({ message: 'Item not found' }); 
+    }
+});
+
 
 app.listen(port, () => {
     console.log("Server up")
