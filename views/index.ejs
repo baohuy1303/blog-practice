@@ -43,7 +43,7 @@
                       <div class="d-flex justify-content-between align-items-center">
 
                           <form action="/delete" method="POST">
-                            <input type="button" onclick="textEdit(<%= index %>)" value="Edit" class="btn btn-sm btn-outline-secondary edit-btn">
+                            <input type="button" onclick="textEdit(<%= index %>)" value="Edit" class="btn btn-sm btn-outline-secondary edit-btn func1">
                             <input type="hidden" name="id" value="<%= index %>">
                             <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
                           </form>
@@ -75,13 +75,33 @@
 
         function textEdit(id){
           let currentTextArea = textEditArea.eq(id);
-          let postText = $('.card-text').eq(id)
+          let postText = $('.card-text').eq(id);
+          let currentBTN = $('.edit-btn').eq(id);
+
+          if(postText.text() != ""){
+            currentTextArea.css({
+                width: postText.outerWidth(),
+                height: postText.outerHeight() + 10,
+              });
+          }
 
           currentTextArea.toggle();
           postText.toggle();
-          currentTextArea.val(postText.text())
+          
+          if(currentBTN.hasClass("func1")){
+              console.log("ok");
+              currentBTN.val("Submit");
+              currentTextArea.val(postText.text());
+              currentBTN.removeClass("func1").addClass("func2");
+            }
+          else if(currentBTN.hasClass("func2")){
+              currentBTN.val("Edit");
+              console.log(currentTextArea.val());
+              postText.text(currentTextArea.val());
+              currentBTN.removeClass("func2").addClass("func1");
+          }
+          console.log(currentTextArea.val());
 
-          $('.edit-btn').val("Submit")
         }
 
       </script>
