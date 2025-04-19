@@ -8,6 +8,8 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
+
 let posts = [
     { id: 0 , title: "Example Post", content: "Example Content"}
 ]
@@ -52,6 +54,7 @@ app.post('/update', (req, res) => {
         res.status(404).json({ message: 'Item not found' }); 
     }
 });
+
 
 
 app.listen(port, () => {
