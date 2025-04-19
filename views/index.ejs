@@ -38,11 +38,12 @@
                   <div class="card shadow-sm">
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"><%= post.title %></text></svg>
                     <div class="card-body">
+                      <textarea name="editor" class="text-edit"></textarea>
                       <p class="card-text"><%= post.content %></p>
                       <div class="d-flex justify-content-between align-items-center">
 
                           <form action="/delete" method="POST">
-                            <input type="button" value="Edit" class="btn btn-sm btn-outline-secondary">
+                            <input type="button" onclick="textEdit(<%= index %>)" value="Edit" class="btn btn-sm btn-outline-secondary edit-btn">
                             <input type="hidden" name="id" value="<%= index %>">
                             <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
                           </form>
@@ -68,6 +69,20 @@
           console.log("ok")
           $('#text-form textarea').val('')
         });
+
+        var textEditArea = $('.text-edit')
+        textEditArea.hide()
+
+        function textEdit(id){
+          let currentTextArea = textEditArea.eq(id);
+          let postText = $('.card-text').eq(id)
+
+          currentTextArea.toggle();
+          postText.toggle();
+          currentTextArea.val(postText.text())
+
+          $('.edit-btn').val("Submit")
+        }
 
       </script>
 </body>
