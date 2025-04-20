@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
@@ -35,13 +37,14 @@
 <div class="album py-5 bg-body-tertiary">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
               <% locals.posts.forEach((post,index) => { %>
                 <div class="col post-card">
-                  <img src="/uploads/<%= post.coverIMG %>" alt="">
+
                   <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top card-title" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"><title>Placeholder</title> <img src="<%= post.coverIMG %>" alt=""></svg>
+                    <img src="<%= post.coverIMG %>" alt="" >
+<!--                     <svg class="bd-placeholder-img card-img-top card-title" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"><title>Placeholder</title> <img  src="<%= post.coverIMG %>" alt=""></svg> -->
                     <div class="card-body">
+                      
                       <textarea name="editor" class="text-edit" maxlength="280"></textarea>
                       <p class="card-text"><%= post.content %></p>
                       <p class="analysis"><%= locals.analysis %></p>
@@ -61,10 +64,7 @@
                 </div>
                 <%});%>
 
-            </div>
-              
-  
-            
+            </div>            
           </div>
         </div>
 

@@ -30,6 +30,7 @@ const upload = multer({ storage: storage })
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.use(express.static("imgs"));
 app.use(express.static('uploads'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -37,7 +38,7 @@ app.use(express.json());
 
 
 let posts = [
-    { id: 0 , title: "Example Post", content: "Example Content", coverIMG: ""}
+    { id: 0 , title: "Example Post", content: "Example Content", coverIMG: "Default.jpg"}
 ]
 
 
@@ -62,6 +63,7 @@ app.post("/submit", upload.single('coverimg'), (req,res) =>{
 
 app.post("/delete", (req,res) =>{
     const currentId = req.body.id;
+
     const filePath = path.join(__dirname, 'uploads',posts[currentId].coverIMG);
     fs.unlink(filePath, (err) => {
         if (err) {
@@ -70,7 +72,7 @@ app.post("/delete", (req,res) =>{
         }
         console.log('File deleted successfully');
       });
-    console.log(currentId)
+
     posts.splice(currentId, 1)
     res.render("index", {
         posts : posts
