@@ -56,7 +56,6 @@ $('#clear').click(function () {
 
   function analyzePost(id){
     let postText = $('.card-text').eq(id);
-    let currentBTN = $('.analyze-btn').eq(id);
     let title = $('.card-title').eq(id);
 
     $.ajax({
@@ -67,7 +66,7 @@ $('#clear').click(function () {
           id: id , title: title, content: postText.text()
         }),
         success: function(response) {
-            console.log('Array updated:', response);
+            $(".analysis").eq(id).text(response.analysis);
             alert('Sent Data!');
         },
         error: function(error) {

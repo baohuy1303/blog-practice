@@ -1,7 +1,9 @@
 import express from "express";
+import { pipeline } from "@xenova/transformers";
 
 const app = express();
 const port = 3000;
+const pipe = await pipeline("sentiment-analysis");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -15,8 +17,11 @@ let posts = [
 ]
 
 
-app.get("/", (req,res) =>{
-    res.render("index",{ posts: posts });
+
+app.get("/", async (req,res) =>{
+    res.render("index",{ 
+        posts: posts
+    });
 })
 
 app.post("/submit", (req,res) =>{
@@ -31,7 +36,6 @@ app.post("/submit", (req,res) =>{
 })
 
 app.post("/delete", (req,res) =>{
-
     const currentId = req.body.id;
     console.log(currentId)
     posts.splice(currentId, 1)
@@ -54,6 +58,15 @@ app.post('/update', (req, res) => {
         res.status(404).json({ message: 'Item not found' }); 
     }
 });
+
+app.post("/analyze", async (req,res)=>{
+    const { id, title, content } = req.body;
+    const result = await pipe(content);
+    console.log(result[0].label);
+    res.json({
+        analysis: result[0].label
+    })
+})
 
 
 
