@@ -67,7 +67,7 @@ $('#clear').click(function () {
         }),
         success: function(response) {
             $(".analysis").eq(id).text(response.analysis);
-            alert('Sent Data!');
+            alert('Analyzed post ' + id);
         },
         error: function(error) {
             console.error('Error sending', error);

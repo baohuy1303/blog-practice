@@ -3,7 +3,7 @@ import { pipeline } from "@xenova/transformers";
 
 const app = express();
 const port = 3000;
-const pipe = await pipeline("sentiment-analysis");
+const pipe = await pipeline("sentiment-analysis", 'Xenova/bert-base-multilingual-uncased-sentiment');
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
