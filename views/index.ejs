@@ -14,11 +14,14 @@
             <h1 class="fw-bold">BLOG POSTING LOCAL HOST</h1>
             <p class="lead text-body-secondary">Test of node, express, ejs, jquery, and using public apis. <br> Create, edit and delete posts. All posts will be saved in the current session only as I don't use a saving system yet :D</p>
             <p>
-                <form action="/submit" method="POST" id="text-form">
+                <form action="/submit" method="POST" id="text-form" enctype="multipart/form-data">
                     <textarea id="post-creation" name="content" placeholder="Type your post" rows="4" cols="50" maxlength="280"></textarea>
                     <div class="container">
                       <input type="submit" class="btn btn-primary my-2" value="Create">
                       <input type="button" class="btn btn-secondary my-2" value="Clear" id="clear">
+
+                      <label for="input-file" class="btn btn-danger my-2" >Upload an Image</label>
+                      <input style="display: none;" type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" name="coverimg">
                     </div>
                 </form>
             </p>
@@ -35,8 +38,9 @@
 
               <% locals.posts.forEach((post,index) => { %>
                 <div class="col post-card">
+                  <img src="/uploads/<%= post.coverIMG %>" alt="">
                   <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top card-title" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"><%= post.title %></text></svg>
+                    <svg class="bd-placeholder-img card-img-top card-title" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"><title>Placeholder</title> <img src="<%= post.coverIMG %>" alt=""></svg>
                     <div class="card-body">
                       <textarea name="editor" class="text-edit" maxlength="280"></textarea>
                       <p class="card-text"><%= post.content %></p>
