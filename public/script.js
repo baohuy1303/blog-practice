@@ -1,4 +1,19 @@
 
+$("img").each(function(){
+  var $this = $(this);
+  var currentIMG = this;
+  console.log($this.attr('src') + ' ' + currentIMG.naturalWidth + ' ' +currentIMG.naturalHeight)
+  if(!$this.hasClass("vertical") && !$this.hasClass("horizontal")){
+      if (currentIMG.naturalWidth < currentIMG.naturalHeight) {
+        $this.addClass("vertical");
+    }else{
+        $this.addClass("horizontal");
+    }
+  }
+
+});
+
+
 const fileInput = $("#input-file")[0]
 const submitBtn = $("#submit-btn")[0]
 const warningFile = $("#warning-file")
@@ -19,20 +34,6 @@ fileInput.addEventListener("input", ()=>{
 })
 
 
-
-$("img").each(function(){
-  var $this = $(this);
-  var currentIMG = this;
-  console.log($this.attr('src') + ' ' + currentIMG.naturalWidth + ' ' +currentIMG.naturalHeight)
-  if(!$this.hasClass("vertical") && !$this.hasClass("horizontal")){
-      if (currentIMG.naturalWidth < currentIMG.naturalHeight) {
-        $this.addClass("vertical");
-    }else{
-        $this.addClass("horizontal");
-    }
-  }
-
-});
 
 $('#clear').click(function () {
     console.log("ok")
