@@ -1,4 +1,24 @@
 
+const fileInput = $("#input-file")[0]
+const submitBtn = $("#submit-btn")[0]
+const warningFile = $("#warning-file")
+submitBtn.disabled = true;
+
+
+fileInput.addEventListener("input", ()=>{
+  if(fileInput.files.length > 0){
+    submitBtn.disabled = false;
+    warningFile.hide()
+    console.log("Yes")
+  }
+  else{
+    submitBtn.disabled = true;
+    warningFile.show()
+    console.log("No")
+  }
+})
+
+
 
 $("img").each(function(){
   var $this = $(this);

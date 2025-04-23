@@ -36,7 +36,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-
 let posts = [
     { id: 0 , title: "Example Post", content: "Example Content", coverIMG: "Default.jpg"}
 ]

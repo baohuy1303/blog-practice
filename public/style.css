@@ -14,3 +14,10 @@ textarea{
     height: 30vh;
     object-fit: contain;
 }
+
+.small-icon{
+    fill: red;
+    width: 50px;
+    height: clamp(10px, 30px, 50px);
+    margin: 10px 0;
+}
